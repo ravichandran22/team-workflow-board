@@ -21,6 +21,8 @@ const BoardPage = () => {
     (state) => state.dismissMigrationNotice,
   );
   const createTask = useTaskStore((state) => state.createTask);
+  const clearTasks = useTaskStore((state) => state.clearTasks);
+  const loadSampleTasks = useTaskStore((state) => state.loadSampleTasks);
   const updateTask = useTaskStore((state) => state.updateTask);
   const updateTaskStatus = useTaskStore((state) => state.updateTaskStatus);
   const { filters, setPriority, setSearch, setSort, toggleStatus } =
@@ -41,7 +43,31 @@ const BoardPage = () => {
   return (
     <div className="app-shell">
       <div className="app-frame">
-        <AppHeader onCreateTask={() => setIsCreateOpen(true)} stats={stats} />
+        <AppHeader
+          hasTasks={tasks.length > 0}
+          onClearBoard={() => {
+            if (!window.confirm("Clear all tasks from the board?")) {
+              return;
+            }
+
+            clearTasks();
+            pushToast({
+              title: "Board cleared",
+              description: "All tasks were removed from local storage.",
+              tone: "warning",
+            });
+          }}
+          onCreateTask={() => setIsCreateOpen(true)}
+          onLoadSampleTasks={() => {
+            loadSampleTasks();
+            pushToast({
+              title: "Sample tasks loaded",
+              description: "Restored the demo board so you can explore the flows.",
+              tone: "info",
+            });
+          }}
+          stats={stats}
+        />
 
         <div className="board-layout">
           <aside className="toolbar-card">

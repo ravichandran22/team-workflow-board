@@ -11,7 +11,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <select
         className={cn(
-          "min-h-11 w-full rounded-2xl border bg-white px-4 text-sm text-[var(--color-ink-900)] shadow-sm outline-none transition focus:border-[var(--color-brand-500)] focus:ring-2 focus:ring-[rgba(27,119,204,0.18)]",
+          "min-h-11 w-full rounded-2xl border bg-[rgba(255,255,255,0.92)] px-4 text-sm text-[var(--color-ink-900)] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] outline-none transition duration-200 focus:border-[var(--color-brand-500)] focus:ring-4 focus:ring-[rgba(32,131,211,0.14)]",
           hasError ? "border-[var(--color-rose-500)]" : "border-[var(--color-ink-200)]",
           className,
         )}

@@ -49,7 +49,7 @@ const TaskFormModal = ({
           />
         ) : null}
 
-        <div className="stack">
+        <div className="stack rounded-[26px] border border-[rgba(223,230,240,0.9)] bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(246,249,252,0.84))] p-4 sm:p-5">
           <Field error={form.errors.title} htmlFor={`${title}-task-title`} label="Title">
             <TextInput
               aria-describedby={form.errors.title ? `${title}-task-title-error` : undefined}

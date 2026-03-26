@@ -24,13 +24,13 @@ const priorityTone = {
 
 const TaskCard = memo(({ onEditTask, onStatusChange, task }: TaskCardProps) => {
   return (
-    <Card className="task-card p-4">
+    <Card className="task-card p-4 sm:p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="m-0 text-base font-semibold text-[var(--color-ink-950)]">
+          <h3 className="m-0 text-base font-semibold tracking-[-0.02em] text-[var(--color-ink-950)]">
             {task.title}
           </h3>
-          <p className="mt-2 text-sm leading-6 text-[var(--color-ink-700)]">
+          <p className="mt-2 text-sm leading-7 text-[var(--color-ink-700)]">
             {task.description}
           </p>
         </div>
@@ -45,7 +45,7 @@ const TaskCard = memo(({ onEditTask, onStatusChange, task }: TaskCardProps) => {
         ))}
       </div>
 
-      <dl className="mt-4 grid gap-2 text-sm text-[var(--color-ink-700)]">
+      <dl className="mt-5 grid gap-2 rounded-[20px] border border-[rgba(223,230,240,0.9)] bg-[var(--color-brand-50)] px-4 py-3 text-sm text-[var(--color-ink-700)]">
         <div className="flex items-center justify-between gap-3">
           <dt className="font-medium text-[var(--color-ink-500)]">Assignee</dt>
           <dd className="m-0 font-semibold text-[var(--color-ink-900)]">
@@ -58,7 +58,7 @@ const TaskCard = memo(({ onEditTask, onStatusChange, task }: TaskCardProps) => {
         </div>
       </dl>
 
-      <div className="mt-4 grid gap-3">
+      <div className="mt-5 grid gap-3">
         <Select
           aria-label={`Change status for ${task.title}`}
           onChange={(event) => onStatusChange(task.id, event.currentTarget.value as Status)}

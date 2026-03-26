@@ -1,4 +1,4 @@
-import { seedTasks } from "../data/seedTasks";
+import { createSampleTasks } from "../data/seedTasks";
 import type {
   LegacyTaskV1,
   PersistedTaskEnvelopeV1,
@@ -44,12 +44,12 @@ const writeTasksToStorage = (tasks: Task[]) => {
 
 const readTasksFromStorage = (): TaskStorageResult => {
   if (typeof window === "undefined") {
-    return { tasks: seedTasks, migrationPerformed: false, storageError: null };
+    return { tasks: createSampleTasks(), migrationPerformed: false, storageError: null };
   }
 
   if (!isStorageAvailable()) {
     return {
-      tasks: seedTasks,
+      tasks: createSampleTasks(),
       migrationPerformed: false,
       storageError: "Local storage is blocked in this browser context",
     };
@@ -58,8 +58,9 @@ const readTasksFromStorage = (): TaskStorageResult => {
   const raw = window.localStorage.getItem(STORAGE_KEY);
 
   if (!raw) {
-    writeTasksToStorage(seedTasks);
-    return { tasks: seedTasks, migrationPerformed: false, storageError: null };
+    const sampleTasks = createSampleTasks();
+    writeTasksToStorage(sampleTasks);
+    return { tasks: sampleTasks, migrationPerformed: false, storageError: null };
   }
 
   try {
@@ -82,7 +83,7 @@ const readTasksFromStorage = (): TaskStorageResult => {
     };
   } catch {
     return {
-      tasks: seedTasks,
+      tasks: createSampleTasks(),
       migrationPerformed: false,
       storageError: "Stored task data could not be read",
     };

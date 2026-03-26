@@ -33,14 +33,14 @@ const TaskFilters = ({
 }: TaskFiltersProps) => {
   return (
     <div className="stack">
-      <div>
+      <div className="rounded-[24px] border border-[rgba(205,214,227,0.8)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(244,248,252,0.8))] px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]">
         <p className="m-0 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-600)]">
           Search and refine
         </p>
-        <h2 className="mt-2 text-2xl font-bold text-[var(--color-ink-950)]">
+        <h2 className="mt-2 text-2xl font-bold tracking-[-0.03em] text-[var(--color-ink-950)]">
           Focus the board
         </h2>
-        <p className="mt-2 text-sm leading-6 text-[var(--color-ink-700)]">
+        <p className="mt-2 text-sm leading-7 text-[var(--color-ink-700)]">
           Showing {taskCount} of {totalTaskCount} task{totalTaskCount === 1 ? "" : "s"}.
         </p>
       </div>
@@ -82,7 +82,7 @@ const TaskFilters = ({
           </Select>
         </Field>
 
-        <div className="stack gap-3">
+        <div className="stack gap-3 rounded-[24px] border border-[rgba(205,214,227,0.8)] bg-[rgba(255,255,255,0.66)] px-4 py-4">
           <span className="text-sm font-semibold text-[var(--color-ink-900)]">
             Status
           </span>

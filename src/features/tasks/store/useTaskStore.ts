@@ -1,11 +1,14 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
+import { createSampleTasks } from "../data/seedTasks";
 import type { Status, Task, TaskDraft } from "../types";
 import { readTasksFromStorage, writeTasksToStorage } from "../utils/taskStorage";
 
 interface TaskStore {
+  clearTasks: () => void;
   createTask: (draft: TaskDraft) => void;
   dismissMigrationNotice: () => void;
+  loadSampleTasks: () => void;
   migrationPerformed: boolean;
   storageError: string | null;
   tasks: Task[];
@@ -33,11 +36,19 @@ const persistTasks = (tasks: Task[]) => {
 
 const useTaskStore = create<TaskStore>()(
   subscribeWithSelector((set) => ({
+    clearTasks: () =>
+      set(() => ({
+        tasks: persistTasks([]),
+      })),
     createTask: (draft) =>
       set((state) => ({
         tasks: persistTasks([buildTask(draft), ...state.tasks]),
       })),
     dismissMigrationNotice: () => set({ migrationPerformed: false }),
+    loadSampleTasks: () =>
+      set(() => ({
+        tasks: persistTasks(createSampleTasks()),
+      })),
     migrationPerformed: initialStorage.migrationPerformed,
     storageError: initialStorage.storageError,
     tasks: initialStorage.tasks,

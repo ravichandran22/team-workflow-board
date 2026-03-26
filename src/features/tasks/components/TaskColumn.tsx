@@ -17,13 +17,17 @@ const TaskColumn = ({
   tasks,
 }: TaskColumnProps) => {
   return (
-    <section aria-label={formatStatus(status)} className="board-column">
+    <section
+      aria-label={formatStatus(status)}
+      className="board-column"
+      data-status={status}
+    >
       <div className="board-column-header">
         <div>
-          <h2 className="m-0 text-lg font-semibold text-[var(--color-ink-950)]">
+          <h2 className="m-0 text-lg font-semibold tracking-[-0.02em] text-[var(--color-ink-950)]">
             {formatStatus(status)}
           </h2>
-          <p className="mt-1 text-sm text-[var(--color-ink-500)]">
+          <p className="mt-1 text-sm leading-6 text-[var(--color-ink-500)]">
             Keep this lane honest and current.
           </p>
         </div>
@@ -43,7 +47,7 @@ const TaskColumn = ({
         ) : (
           <div className="empty-state min-h-[180px]">
             <h3 className="m-0 text-lg font-semibold">Nothing here yet</h3>
-            <p className="m-0 text-sm">
+            <p className="m-0 max-w-xs text-sm leading-6">
               Move work into this column or create a new task to get started.
             </p>
           </div>

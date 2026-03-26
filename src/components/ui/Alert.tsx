@@ -18,9 +18,9 @@ const toneClasses: Record<AlertTone, string> = {
 
 const Alert = ({ description, title, tone = "info" }: AlertProps) => {
   return (
-    <div className={cn("rounded-2xl border px-4 py-3", toneClasses[tone])}>
-      <p className="m-0 text-sm font-semibold">{title}</p>
-      {description ? <div className="mt-1 text-sm">{description}</div> : null}
+    <div className={cn("rounded-3xl border px-4 py-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]", toneClasses[tone])}>
+      <p className="m-0 text-sm font-semibold tracking-[0.01em]">{title}</p>
+      {description ? <div className="mt-1.5 text-sm leading-6">{description}</div> : null}
     </div>
   );
 };

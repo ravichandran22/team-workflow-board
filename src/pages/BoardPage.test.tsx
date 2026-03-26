@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ToastProvider } from "../components/ui/Toast";
-import { seedTasks } from "../features/tasks/data/seedTasks";
+import { createSampleTasks } from "../features/tasks/data/seedTasks";
 import { useTaskStore } from "../features/tasks/store/useTaskStore";
 import { BoardPage } from "./BoardPage";
 
@@ -20,7 +20,7 @@ describe("BoardPage", () => {
   beforeEach(() => {
     window.localStorage.clear();
     useTaskStore.setState({
-      tasks: seedTasks,
+      tasks: createSampleTasks(),
       migrationPerformed: false,
       storageError: null,
     });

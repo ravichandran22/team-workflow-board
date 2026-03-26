@@ -44,11 +44,11 @@ const ToastProvider = ({ children }: { children: ReactNode }) => {
       <div
         aria-atomic="true"
         aria-live="polite"
-        className="pointer-events-none fixed bottom-5 right-5 z-[60] grid gap-3"
+        className="pointer-events-none fixed inset-x-4 bottom-4 z-[60] grid justify-items-stretch gap-3 sm:inset-x-auto sm:right-5 sm:w-auto sm:justify-items-end"
       >
         {toasts.map((toast) => (
           <div
-            className={`pointer-events-auto min-w-[280px] max-w-sm rounded-3xl border px-4 py-3 shadow-[0_20px_48px_rgba(17,24,39,0.18)] ${toneClasses[toast.tone]}`}
+            className={`pointer-events-auto w-full max-w-sm rounded-[26px] border px-4 py-3.5 shadow-[0_20px_48px_rgba(16,32,51,0.18)] backdrop-blur-sm sm:min-w-[300px] ${toneClasses[toast.tone]}`}
             key={toast.id}
             role="status"
           >
