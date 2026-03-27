@@ -84,4 +84,3 @@ npm run test
 ## Submission Notes
 
 - Additional design and technical notes are in `ARCHITECTURE.md`.
-- The screen recording walkthrough is still a manual deliverable to record before submission.
