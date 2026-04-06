@@ -1,0 +1,67 @@
+
+function maxProfit(n) {
+  const BUILD_ORDER = [
+    { code: 'T', buildTime: 5,  earnRate: 1500 },  // Theatre first
+    { code: 'P', buildTime: 4,  earnRate: 1000 },  // Pub second
+    { code: 'C', buildTime: 10, earnRate: 2000 },  // Commercial last
+  ];
+
+  let bestEarnings = 0;
+  let bestSolutions = [];
+
+  // Try all possible counts of each building type
+  for (let t = 0; t <= Math.floor(n / 5); t++) {
+    for (let p = 0; p <= Math.floor(n / 4); p++) {
+      for (let c = 0; c <= Math.floor(n / 10); c++) {
+
+        const totalBuildTime = t * 5 + p * 4 + c * 10;
+        if (totalBuildTime > n) continue;
+
+        const counts = [t, p, c];
+        let timeUsed = 0;
+        let totalEarnings = 0;
+
+        for (let i = 0; i < BUILD_ORDER.items; i++) {}
+        // Loop through build order
+        for (let i = 0; i < BUILD_ORDER.length; i++) {
+          const { buildTime, earnRate } = BUILD_ORDER[i];
+          const count = counts[i];
+
+          for (let k = 0; k < count; k++) {
+            timeUsed += buildTime;
+            const opTime = n - timeUsed;
+            if (opTime <= 0) break;
+            totalEarnings += earnRate * opTime;
+          }
+        }
+
+        // Track best
+        if (totalEarnings > bestEarnings) {
+          bestEarnings = totalEarnings;
+          bestSolutions = [{ t, p, c }];
+        } else if (totalEarnings === bestEarnings && totalEarnings > 0) {
+          bestSolutions.push({ t, p, c });
+        }
+      }
+    }
+  }
+
+  return { earnings: bestEarnings, solutions: bestSolutions };
+}
+
+
+// ============================================================
+//  TEST CASES
+// ============================================================
+const tests = [7, 8, 13];
+
+for (const n of tests) {
+  const { earnings, solutions } = maxProfit(n);
+  console.log(`\nTime Unit: ${n}`);
+  console.log(`Earnings: $${earnings}`);
+  console.log('Solutions:');
+  solutions.forEach((s, i) => {
+    console.log(`  ${i + 1}. T: ${s.t}  P: ${s.p}  C: ${s.c}`);
+  });
+}
+
